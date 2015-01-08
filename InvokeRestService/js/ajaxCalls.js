@@ -3,7 +3,7 @@
  */
 var ajaxCalls = {
     loadUsers : function(){
-        $('#CF_Users_List').append('<li>Users Loaded</li>');
+        $('#RM_Users_List').append('<li>Users Loaded</li>');
         var url = "http://www.thomas-bayer.com/sqlrest/CUSTOMER/";
         $.ajax({
             type:"GET",

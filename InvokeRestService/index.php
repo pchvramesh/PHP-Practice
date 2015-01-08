@@ -2,7 +2,7 @@
 <?php
 	require_once('JQuery.php');
 ?>
-<ul id="CF_Users_List">
+<ul id="RM_Users_List">
 
 </ul>
 <?php require_once('ajaxCalls.php')?>
