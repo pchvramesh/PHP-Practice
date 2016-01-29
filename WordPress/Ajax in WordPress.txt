@@ -1,0 +1,42 @@
+//Word Press Hook for ajax request
+
+add_action('wp_ajax_nopriv_ajax_request', 'ajax_request');
+add_action('wp_ajax_ajax_request', 'ajax_request');
+function ajax_request()
+{
+    echo('Sample Request');
+    die(); // last line
+}
+
+//Enque Scripts for adding your javascript event
+
+
+add_action('wp_enqueue_scripts', 'mysite_enqueue');
+
+function mysite_enqueue() {
+    $ss_url = get_stylesheet_directory_uri();
+    wp_enqueue_script('mysite-scripts', "{$ss_url}/js/v-custom.js");
+    wp_localize_script('ajax-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+}
+
+add_action('admin_enqueue_scripts', 'my_enqueue');
+
+function my_enqueue() {
+    wp_localize_script('ajax-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+}
+
+
+//JavaScript
+
+jQuery(document).on('click','#action',function() {
+
+    jQuery.ajax({
+        url: 'http://' + window.location.hostname + '/wp-admin/admin-ajax.php',
+        type: 'POST',
+        data: {
+            action: 'ajax_request', // the function name you used in functions.php
+            data_to_send_to_server: 'Sample Data' // retrieve from $_POST in php
+        }}).done(function (r) {
+            //Your actions after ajax success
+        });
+});
