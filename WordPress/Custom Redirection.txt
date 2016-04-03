@@ -1,0 +1,10 @@
+add_filter('woocommerce_login_redirect', 'custom_redirect_after_login',10,2);
+
+function custom_redirect_after_login($redirect, $user)
+{
+    $role = $user->roles[0];
+    if ($role === 'somerole') {
+        $redirect = home_url() . '/somepage';
+    }
+    return $redirect;
+}
