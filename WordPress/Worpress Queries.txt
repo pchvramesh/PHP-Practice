@@ -1,0 +1,5 @@
+Select Users from users table using meta data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+$users = $wpdb->get_results("SELECT DISTINCT user_id FROM $wpdb->usermeta WHERE meta_key='orders_count' ORDER BY meta_value ASC", "ARRAY_N");
+
+
